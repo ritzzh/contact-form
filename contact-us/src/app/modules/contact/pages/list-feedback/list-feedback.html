@@ -1,5 +1,12 @@
 <div class="container-fluid w-100 p-5">
   <div class="row">
+
+    <div *ngIf="allFeedbacks.length === 0"
+      class="col-12 text-center text-muted d-flex flex-column align-items-center justify-content-center py-5">
+      <img src="assets/nofeedbacks.gif" alt="No feedback" class="mb-3" style="max-width: 200px;">
+      <p class="fs-5">No feedbacks available yet.</p>
+    </div>
+
     <ng-container *ngFor="let feedback of allFeedbacks">
       <div class="col-12 col-md-6 col-lg-3 mb-4">
         <mat-card class="mat-elevation-z2 h-100 d-flex flex-column justify-content-between">
@@ -13,7 +20,9 @@
           </mat-card-header>
 
           <mat-card-content class="min-height-x">
-            <p>{{ feedback.message | slice:0:75 }}{{ feedback.message.length > 75 ? '...' : '' }}</p>
+            <p>
+              {{ feedback.message | slice: 0:75 }}{{ feedback.message.length > 75 ? '...' : '' }}
+            </p>
           </mat-card-content>
 
           <mat-card-actions class="d-flex justify-content-end">
@@ -24,5 +33,6 @@
         </mat-card>
       </div>
     </ng-container>
+
   </div>
 </div>
