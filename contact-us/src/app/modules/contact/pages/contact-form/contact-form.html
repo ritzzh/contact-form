@@ -1,0 +1,76 @@
+<div class="container-fluid justify-content-center align-items-center d-flex flex-column gap-3 p-3">
+  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()"
+    class="col-md-4 d-flex flex-column gap-3 border-rounded p-3 shadow-sm">
+
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="Enter your name" required formControlName="name">
+
+      <mat-error
+        *ngIf="contactForm.get('name')?.errors?.['required'] && (contactForm.get('name')?.touched || contactForm.get('name')?.dirty)">
+        Name is required
+      </mat-error>
+
+      <mat-error
+        *ngIf="!contactForm.get('name')?.errors?.['required'] && contactForm.get('name')?.errors?.['maxlength'] && (contactForm.get('name')?.touched || contactForm.get('name')?.dirty)">
+        Name cannot exceed 30 characters
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput type="email" placeholder="Enter your email" required formControlName="email">
+      <mat-error
+        *ngIf="contactForm.get('email')?.errors?.['required'] && (contactForm.get('email')?.touched || contactForm.get('email')?.dirty)">
+        Email is required
+      </mat-error>
+      <mat-error
+        *ngIf="contactForm.get('email')?.errors?.['email'] && (contactForm.get('email')?.touched || contactForm.get('email')?.dirty)">
+        Enter a valid email address
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Location</mat-label>
+      <input type="text" matInput placeholder="Enter location" required formControlName="location"
+        [matAutocomplete]="auto" />
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let loc of filteredLocations | async" [value]="loc">
+          {{ loc }}
+        </mat-option>
+      </mat-autocomplete>
+      <mat-error
+        *ngIf="contactForm.get('location')?.invalid && (contactForm.get('location')?.touched || contactForm.get('location')?.dirty)">
+        Location is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Subject</mat-label>
+      <input matInput placeholder="Enter subject" required formControlName="subject">
+      <mat-error
+        *ngIf="contactForm.get('subject')?.invalid && (contactForm.get('subject')?.touched || contactForm.get('subject')?.dirty)">
+        Subject is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Message</mat-label>
+      <textarea matInput placeholder="Enter your message" required formControlName="message"></textarea>
+      <mat-error
+        *ngIf="contactForm.get('message')?.invalid && (contactForm.get('message')?.touched || contactForm.get('message')?.dirty)">
+        Message is required
+      </mat-error>
+    </mat-form-field>
+
+    <div class="w-100 d-flex flex-row align-items-center justify-content-between gap-2">
+      <div class="redirect">
+        <button mat-button type="button" (click)="redirectToFormDisplay()">View Messages</button>
+      </div>
+      <div class="actions d-flex flex-row gap-2">
+        <button mat-button type="reset">Reset</button>
+        <button mat-raised-button color="primary" type="submit">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>

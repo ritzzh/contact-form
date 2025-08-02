@@ -1,0 +1,36 @@
+<mat-card class="feedback-modal p-3">
+  <mat-card-header class="d-flex align-items-center gap-2">
+    <mat-icon color="primary">feedback</mat-icon>
+    <mat-card-title class="h5 m-0">Feedback from {{ data.name }}</mat-card-title>
+    <span class="ms-auto text-muted small d-flex align-items-center no-wrap"><mat-icon class="me-1">schedule</mat-icon> {{
+      data.date | date:'short' }}</span>
+  </mat-card-header>
+
+  <mat-card-content class="dialog-content mt-3">
+    <div class="mb-2 d-flex align-items-center">
+      <mat-icon class="me-1 text-primary">email</mat-icon>
+      <strong>Email: &nbsp;</strong> {{ data.email }}
+    </div>
+    <div class="mb-2 d-flex align-items-center">
+      <mat-icon class="me-1 text-primary">location_on</mat-icon>
+      <strong>Location: &nbsp;</strong> {{ data.location }}
+    </div>
+    <div class="mb-2 d-flex align-items-center">
+      <mat-icon class="me-1 text-primary">subject</mat-icon>
+      <strong>Subject : &nbsp;</strong> {{ data.subject }}
+    </div>
+    <div class="mb-2 d-flex align-items-center">
+      <mat-icon class="me-1 text-primary">message</mat-icon>
+      <strong>Message: &nbsp;</strong>
+    </div>
+    <div class="message-box border rounded bg-light p-2">
+      {{ data.message }}
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions class="d-flex justify-content-end mt-3">
+    <button mat-button mat-dialog-close color="primary">
+      <mat-icon class="me-1">close</mat-icon> Close
+    </button>
+  </mat-card-actions>
+</mat-card>

@@ -1,0 +1,14 @@
+.dialog-title {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 2px
+}
+
+mat-dialog-content {
+  padding-top: 12px;
+}
+
+mat-dialog-actions {
+  margin-top: 16px;
+}
